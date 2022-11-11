@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+	font-family: 'CaskaydiaCove Nerd Font Mono';
+	src: url('/CaskaydiaCoveNerdFontCompleteM-.eot');
+	src: url('/CaskaydiaCoveNerdFontCompleteM-.eot?#iefix') format('embedded-opentype'),
+		url('/CaskaydiaCoveNerdFontCompleteM-.woff2') format('woff2'),
+		url('/CaskaydiaCoveNerdFontCompleteM-.woff') format('woff'),
+		url('/CaskaydiaCoveNerdFontCompleteM-.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+html {
+	scrollbar-color: hsla(0, 0%, 100%, 0.289) transparent;
+	scrollbar-width: thin;
+	font-family: CaskaydiaCove Nerd Font Mono;
+	color: #A7ADBA;
+	background-color: #1f1f1f;
+}
+
+.heading {
+	color: white
+}
+
+::-webkit-scrollbar {
+	width: 2px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: hsla(0, 0%, 100%, 0.289);
+	border-radius: 3px;
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
+	display: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a {
+	text-decoration: underline;
+}
+
+.astro-code {
+	background-color: #1f1f1f;
+	overflow-x:auto
+}

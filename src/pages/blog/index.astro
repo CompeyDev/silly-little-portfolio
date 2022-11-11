@@ -1,0 +1,23 @@
+---
+import ProjectItem from "../../components/ProjectItem.svelte";
+import Layout from "../../layouts/Layout.svelte";
+const posts = await Astro.glob("./*.mdx");
+---
+<Layout leftAlign={true}>
+
+
+	<section
+		class="p-8 sm:p-12 lg:p-24 lg:py-16 font-cascadia flex flex-col sm:flex-row grid"
+	>
+		{
+			posts.map((post) => (
+				<ProjectItem
+					href={`${post.url}`}
+					name={`${post.frontmatter.title}`}
+					description={`${post.frontmatter.publishDate}`}
+				/>
+			))
+		}
+	</section>
+
+</Layout>

@@ -1,0 +1,196 @@
+---
+import Layout from "../layouts/Layout.svelte";
+import ProjectItem from "../components/ProjectItem.svelte";
+import Workspace from "../components/Workspace.svelte";
+import Branch from "../components/Branch.svelte";
+import Language from "../components/Language.svelte";
+import { DateTime } from "luxon";
+import { getCodeData, getOtherActivities } from "../lib/rpcUtils";
+import type { LanyardData } from "sk-lanyard";
+import TimeValue from "../components/TimeValue.svelte";
+
+const apiEndpoint = "https://api.lanyard.rest/v1/users/893762371770802227";
+const fetchedData = await fetch(apiEndpoint).then((response) =>
+	response.json()
+);
+const data: LanyardData = fetchedData.data;
+let codeData = getCodeData(data);
+---
+
+<script lang="ts">
+	document.onmousemove = function (e) {
+		var x = e.clientX;
+		var y = e.clientY;
+		const jake = document.getElementById("jake");
+		if (!jake) return;
+		jake.style.marginLeft = x + "px";
+		jake.style.marginTop = y + "px";
+	};
+	window.onscroll = () => {
+		window.scroll(0, 0);
+	};
+
+	document.onclick = async function (e) {
+		const jake = document.getElementById("jake");
+		if (!jake) return;
+		jake.style.height = "25px";
+		jake.style.width = "25px";
+		await new Promise((resolve) => setTimeout(resolve, 100));
+		jake.style.height = "20px";
+		jake.style.width = "20px";
+	};
+
+
+	async function updateSpotify() {
+		try {
+			const song_mount = document.getElementById("spotify_song");
+			const artist_mount = document.getElementById("spotify_artist");
+			const album_mount = document.getElementById("spotify_album");
+			const raw = await fetch(
+				"https://api.lanyard.rest/v1/users/893762371770802227"
+			);
+			const data = (await raw.json()).data;
+
+			if (!data.spotify?.song) {
+				song_mount.remove()
+				artist_mount.remove()
+				album_mount.remove()
+			}
+			song_mount.innerHTML = data.spotify?.song;
+			artist_mount.innerHTML = data.spotify?.artist;
+			album_mount.innerHTML = data.spotify?.album;
+		} catch (e) {}
+	}
+
+	setInterval(updateSpotify, 500);
+</script>
+<astro:head>
+	<title>silly little portfolio</title>
+	<meta charset="utf-8" />
+	<meta name="og:title" content="portfolio" />
+	<meta name="description" content="a collection of various things" />
+	<meta name="og:description" content="a collection of various things" />
+	<meta
+		name="theme-color"
+		media="(prefers-color-scheme: light)"
+		content="#f9f0f5"
+	/>
+	<meta
+		name="theme-color"
+		media="(prefers-color-scheme: dark)"
+		content="#281c21"
+	/>
+</astro:head>
+
+<div
+class="font-bold text-gray-700 opacity-50 rounded-full bg-white flex items-center justify-center font-mono"
+style="height: 20px; width: 20px"
+id="jake"
+>
+</div>
+<Layout leftAlign={false}>
+	<div
+		class="overflow-x-hidden overflow-y-hidden"
+		style="width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 999"
+	>
+		<section
+			class="p-8 sm:p-12 lg:p-24 lg:py-16 font-cascadia z-10 flex flex-col sm:flex-row gap-y-10 justify-center grid place-items-center h-screen"
+		>
+			<div class="flex flex-col gap-7">
+				<div>
+					<h1 class="text-ocean-700 dark:text-ocean-300">
+						<span class="dark:text-ocean-blue">compey</span>
+						<Workspace
+							workspace={codeData?.workspace}
+						/>
+						<Branch name={codeData?.branch} />
+						<Language lang={codeData?.lang} />
+						
+					</h1>
+					<br />
+					<h1 class="text-ocean-900 dark:text-ocean-100 heading">
+						projects
+					</h1>
+					<ul
+						class="list-disc list-inside text-ocean-700 dark:text-ocean-blue"
+					>
+						<ProjectItem
+							href="https://datalink.dev"
+							name="datalink"
+							description="lightweight & futuristic analytics platform"
+						/>
+						<ProjectItem
+							href="https://github.com/flightpkg"
+							name="flightpkg"
+							description="package manager of the future"
+						/>
+						<ProjectItem
+							href="https://github.com/CompeyDev/bvm"
+							name="bvm"
+							description="bun version manager"
+						/>
+						<ProjectItem
+							href="https://github.com/CompeyDev/roblox.js"
+							name="roblox.js"
+							description="roblox opencloud js wrapper"
+						/>
+						<ProjectItem
+							href="https://github.com/CompeyDev/discord-status-action"
+							name="discord-status-action"
+							description="discord status emoji using GitHub Actions"
+						/>
+						<ProjectItem
+							href="https://github.com/CompeyDev/rojo-build-action"
+							name="rojo-build-action"
+							description="build rojo projects using GitHub actions"
+						/>
+					</ul>
+				</div>
+				<div>
+					<h1 class="text-ocean-900 dark:text-ocean-100 heading">
+						links
+					</h1>
+					<ul
+						class="list-disc list-inside text-ocean-700 dark:text-ocean-blue"
+					>
+						<ProjectItem
+							href="https://twitter.com/DevComp_"
+							name="twitter"
+						/>
+						<ProjectItem
+							href="https://github.com/CompeyDev"
+							name="github"
+						/>
+						<ProjectItem
+							href="mailto:hi@devcomp.xyz"
+							name="email"
+						/>
+					</ul>
+				</div>
+				<div
+					class="text-ocean-900 dark:text-ocean-300 flex flex-col items-start sm:items-end gap-3 sm:gap-7 sm:text-right"
+				>
+					<TimeValue />
+
+					<div class="flex flex-col items-start sm:items-end">
+						<span
+							id="spotify_song"
+							class="text-ocean-900 dark:text-ocean-100 heading"
+							>{data.spotify?.artist}</span
+						>
+						<span
+							id="spotify_artist"
+							class="text-ocean-800 dark:text-ocean-300"
+							>{data.spotify?.artist}</span
+						>
+						<span
+							id="spotify_album"
+							class="text-ocean-700 dark:text-ocean-400"
+							>{data.spotify?.album}</span
+						>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</Layout>
