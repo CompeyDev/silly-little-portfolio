@@ -3,3 +3,5 @@
 - [ ] Refactor code structure
 - [ ] Add transitions
 - [ ] Add client loaders
+- [ ] Fix faulty layouts
+- [ ] Add dynamic blog embeds
