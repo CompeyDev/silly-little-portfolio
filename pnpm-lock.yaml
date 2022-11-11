@@ -7,6 +7,7 @@ specifiers:
   '@astrojs/tailwind': ^2.0.2
   astro: ^1.4.5
   luxon: ^3.0.4
+  nanostores: ^0.7.0
   sk-lanyard: ^0.1.7
   svelte: ^3.46.4
   tailwindcss: ^3.0.24
@@ -19,6 +20,7 @@ dependencies:
   '@astrojs/tailwind': 2.0.2_tailwindcss@3.1.8
   astro: 1.4.5
   luxon: 3.0.4
+  nanostores: 0.7.0
   sk-lanyard: 0.1.7_svelte@3.50.1
   svelte: 3.50.1
   tailwindcss: 3.1.8
@@ -3123,6 +3125,11 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+    dev: false
+
+  /nanostores/0.7.0:
+    resolution: {integrity: sha512-y+ma9MVXuPzXKEXaRYW/iL/xG/HtMwB8fmFcMfUqt5fCNR/na2kDubbZGV4furUMTgmxfySJs0cQjORWhaPDyA==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     dev: false
 
   /nlcst-to-string/2.0.4:
