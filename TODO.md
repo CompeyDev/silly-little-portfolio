@@ -1,3 +1,5 @@
-[] Fix homepage navbar links
-[] Fix time-toggle
-[] Refactor code structure
+- [ ] Fix homepage navbar links
+- [ ] Fix time-toggle
+- [ ] Refactor code structure
+- [ ] Add transitions
+- [ ] Add client loaders
