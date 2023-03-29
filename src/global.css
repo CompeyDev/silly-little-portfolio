@@ -15,10 +15,20 @@
 	font-display: swap;
 }
 
+
+@font-face {
+	font-family: '8 Bit Wonder';
+	src: url('/PixeloidMono-VGj6x.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+	/* cursor: url(''); */
+}
+
 html {
 	scrollbar-color: hsla(0, 0%, 100%, 0.289) transparent;
 	scrollbar-width: thin;
-	font-family: CaskaydiaCove Nerd Font Mono;
+	font-family: '8 Bit Wonder';
 	color: #A7ADBA;
 	background-color: #1f1f1f;
 }
@@ -56,5 +66,41 @@ a {
 
 .astro-code {
 	background-color: #1f1f1f;
-	overflow-x:auto
+	overflow-x: auto
+}
+
+li {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 1em;
+	text-indent: -1em;
+	padding-left: 1em;
+	text-indent: -1em;
+}
+
+.projects:before {
+	content: url('/rsz_heart-bullet-point-8-bit.png');
+	padding-right: 10px;
+}
+
+.link:before {
+	content: url('/rsz_social-bullet-point-8-bit.png');
+	padding-right: 10px;
+}
+
+.flash {
+	animation: flash-anim 1s steps(5, start) infinite;
+	-webkit-animation: flash-anim 1s steps(5, start) infinite;
+}
+
+@keyframes flash-anim {
+	to {
+		visibility: hidden;
+	}
+}
+
+@-webkit-keyframes flash-anim {
+	to {
+		visibility: hidden;
+	}
 }
