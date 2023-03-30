@@ -89,18 +89,26 @@ li {
 }
 
 .flash {
-	animation: flash-anim 1s steps(5, start) infinite;
-	-webkit-animation: flash-anim 1s steps(5, start) infinite;
+	animation: flash-anim 1s steps(2, end) infinite;
+	-webkit-animation: flash-anim 1s steps(2, end) infinite;
 }
 
 @keyframes flash-anim {
-	to {
-		visibility: hidden;
+	10% {
+		opacity: 0;
+	}
+
+	40%, 100% {
+		opacity: 1;
 	}
 }
 
 @-webkit-keyframes flash-anim {
-	to {
-		visibility: hidden;
+	10% {
+		opacity: 0;
+	}
+
+	40%, 100% {
+		opacity: 1;
 	}
 }

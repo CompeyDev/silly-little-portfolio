@@ -47,7 +47,7 @@
 /> -->
 {#if leftAlign}
 	<div class="overflow-x-hidden overflow-y-hidden w-4/5">
-		<Navbar centerAlign={false} />
+		<!-- <Navbar centerAlign={false} /> -->
 		<section class="p-4">
 			<main>
 				<slot />
@@ -63,7 +63,7 @@
 		class="overflow-x-hidden overflow-y-hidden"
 		style="width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 999"
 	>
-		<Navbar centerAlign={true} />
+		<!-- <Navbar centerAlign={true} /> -->
 		<section
 			class="p-8 sm:p-12 lg:p-24 lg:py-16 font-cascadia z-10 flex flex-col sm:flex-row gap-y-10 justify-center grid place-items-center h-screen"
 		>

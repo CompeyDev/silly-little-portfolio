@@ -1,15 +1,13 @@
 ---
 import Layout from "../layouts/Layout.svelte";
 import ProjectItem from "../components/ProjectItem.svelte";
-import SocialLink from "../components/SocialLink.svelte";
+import LinkItem from "../components/LinkItem.svelte";
 import Workspace from "../components/Workspace.svelte";
 import Branch from "../components/Branch.svelte";
 import Language from "../components/Language.svelte";
 import { DateTime } from "luxon";
-import { getCodeData, getOtherActivities } from "../lib/rpcUtils";
+import { getCodeData } from "../lib/rpcUtils";
 import type { LanyardData } from "sk-lanyard";
-import TimeValue from "../components/TimeValue.svelte";
-import Waveform from "../components/AudioVisualizer";
 
 const apiEndpoint = "https://api.lanyard.rest/v1/users/893762371770802227";
 const fetchedData = await fetch(apiEndpoint).then((response) => response.json());
@@ -28,26 +26,63 @@ let codeData = getCodeData(data);
 			});
 		}
 
-		let gameStart = new Audio();
-		gameStart.src = "/game_start.mp3";
+		function mountCurrentlyPlaying(musicNameElement, musicNameDiv, name) {
+			musicNameElement.textContent = name;
+			musicNameDiv.style.visibility = "visible";
+
+			console.log(`audioController/mountCurrentlyPlaying :: Mounted currently playing as ${name}`)
+		}
+
+		let playNo = 0;
+
+		const songs = [
+			{
+				name: "Game Start! - Xeon Diversity",
+				url: "/game_start.mp3",
+			},
+			{
+				name: "Tamamushi - Rav",
+				url: "/tamamushi.mp3",
+			},
+		];
+
+		let bgAudio = new Audio();
+		bgAudio.src = songs[playNo].url;
+
 		let audioSrc = null;
 		let audioAnalyzer = null;
 
 		window.onload = () => {
 			const playButton = document.getElementById("PRESS_ME");
+			const musicNameElement = document.getElementById("current_music");
+			const musicNameDiv = document.getElementById("current_music_div");
+
+			bgAudio.addEventListener("ended", () => {
+				console.log("audioController :: Song ended, moving to next");
+				playNo++;
+				bgAudio.src = songs[playNo].url;
+				bgAudio.currentTime = 0;
+
+				mountCurrentlyPlaying(musicNameElement, musicNameDiv, songs[playNo].name);
+
+				bgAudio.play();
+			});
 
 			playButton.onclick = () => {
 				playButton.remove();
+
+				mountCurrentlyPlaying(musicNameElement, musicNameDiv, songs[playNo].name);
+
 				const visualizerCanvas = document.getElementById("canvas");
 				visualizerCanvas.width = window.innerWidth;
 				visualizerCanvas.height = window.innerHeight;
 
 				const ctx = visualizerCanvas.getContext("2d");
 
-				gameStart.play();
+				bgAudio.play();
 				let audioCtx = new window.AudioContext();
 
-				audioSrc = audioCtx.createMediaElementSource(gameStart);
+				audioSrc = audioCtx.createMediaElementSource(bgAudio);
 				audioAnalyzer = audioCtx.createAnalyser();
 				audioSrc.connect(audioAnalyzer);
 				audioAnalyzer.connect(audioCtx.destination);
@@ -58,10 +93,10 @@ let codeData = getCodeData(data);
 				const barWidth = canvas.width / bufferLength;
 
 				let x = 0;
-				let animationController = () => {
+				let animatify = () => {
 					const runId = genId();
 
-					console.log(`animationController :: Running render proc ${runId}`);
+					console.log(`animatify :: Running render proc ${runId}`);
 
 					x = 0;
 					ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -74,10 +109,10 @@ let codeData = getCodeData(data);
 					}
 
 					// recursion cool
-					requestAnimationFrame(animationController);
+					requestAnimationFrame(animatify);
 				};
 
-				animationController();
+				animatify();
 			};
 		};
 	</script>
@@ -100,6 +135,13 @@ let codeData = getCodeData(data);
 			class="overflow-x-hidden overflow-y-hidden"
 			style="width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 999"
 		>
+			<div id="current_music_div" style="text-align: right; visibility: hidden;">
+				<img
+					style="float: right; padding-right: 5px; align: right;"
+					src="/rsz_currently-playing-music-note-8-bit.gif"
+				/>
+				<p style="padding-top: 5px;" id="current_music"></p>
+			</div>
 			<section
 				class="p-8 sm:p-12 lg:p-24 lg:py-16 font-cascadia z-10 flex flex-col sm:flex-row gap-y-10 justify-center grid place-items-center h-screen"
 			>
@@ -154,9 +196,9 @@ let codeData = getCodeData(data);
 					<div>
 						<h1 class="text-ocean-900 dark:text-ocean-100 heading">links</h1>
 						<ul class="list-disc list-inside text-ocean-700 dark:text-ocean-blue">
-							<SocialLink href="https://twitter.com/DevComp_" name="twitter" />
-							<SocialLink href="https://github.com/CompeyDev" name="github" />
-							<SocialLink href="mailto:hi@devcomp.xyz" name="email" />
+							<LinkItem href="https://twitter.com/DevComp_" name="twitter" />
+							<LinkItem href="https://github.com/CompeyDev" name="github" />
+							<LinkItem href="mailto:hi@devcomp.xyz" name="email" />
 						</ul>
 					</div>
 					<button
