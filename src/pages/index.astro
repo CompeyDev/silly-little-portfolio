@@ -73,7 +73,7 @@ let codeData = getCodeData(data);
 
 				mountCurrentlyPlaying(musicNameElement, musicNameDiv, songs[playNo].name);
 
-				const visualizerCanvas = document.getElementById("canvas");
+				const visualizerCanvas: any = document.getElementById("canvas");
 				visualizerCanvas.width = window.innerWidth;
 				visualizerCanvas.height = window.innerHeight;
 
@@ -90,7 +90,7 @@ let codeData = getCodeData(data);
 				audioAnalyzer.fftSize = 128;
 				const bufferLength = audioAnalyzer.frequencyBinCount;
 				const dataArray = new Uint8Array(bufferLength);
-				const barWidth = canvas.width / bufferLength;
+				const barWidth = visualizerCanvas.width / bufferLength;
 
 				let x = 0;
 				let animatify = () => {
@@ -99,12 +99,12 @@ let codeData = getCodeData(data);
 					console.log(`animatify :: Running render proc ${runId}`);
 
 					x = 0;
-					ctx.clearRect(0, 0, canvas.width, canvas.height);
+					ctx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
 					audioAnalyzer.getByteFrequencyData(dataArray);
 					for (let i = 0; i < bufferLength; i++) {
-						barHeight = dataArray[i];
+						const barHeight = dataArray[i];
 						ctx.fillStyle = "purple";
-						ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+						ctx.fillRect(x, visualizerCanvas.height - barHeight, barWidth, barHeight);
 						x += barWidth;
 					}
 
