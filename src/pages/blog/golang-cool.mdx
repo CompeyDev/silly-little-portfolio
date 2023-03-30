@@ -10,7 +10,7 @@ import Navbar from '../../components/Navbar.svelte'
 <Layout leftAlign={true}>
     <Heading>Why Golang is awesome ♥</Heading>
     <br />
-    Recently, I set forth attempting to learn lower level languages, mainly [Rust](https://rust-lang.org). After hours of confused stack overflow searches and debugging — I gave up; the borrowing system was just too confusing for me (for now...).
+    Recently, I set forth attempting to learn lower level languages, mainly [Rust](https://rust-lang.org). After hours of confused stack overflow searches and debugging — I gave up; the borrowing checking system was just too confusing for me (for now...).
     However, all was not lost; while browsing through some source code on GitHub, I was inspired to rather learn [Go](https://go.dev). With this newly found love for Go, I set forth creating my first major Go project: [Quickie](https://github.com/datalinkhq/quickie). Quickie is a REST API built using [Gin](https://gin-gonic.com), a web framework similar to many others (express, django, etc.) but for Go. Quickie is a redis caching layer for my startup, [datalink](https://datalink.dev). 
 
     <br />
@@ -46,7 +46,7 @@ import Navbar from '../../components/Navbar.svelte'
     ```
     </div>
     <br />
-    I also learnt about pointers **AND THEY ARE INSANELY COOL**. Moving on, I realized rate-limiting was vital and therefore set it up too, with a [handy little library](https://github.com/JGLTechnologies/gin-rate-limit). Overall, the developer experience with Go was amazing, the best way I could describe it would be:
+    Furthermore, I noticed how the pointer abstraction system was really simplified, which lead to quite less cluttered raw pointer statements. Moving on, I realized rate-limiting was vital and therefore set it up too, with a [handy little library](https://github.com/JGLTechnologies/gin-rate-limit). Overall, the developer experience with Go was amazing, the best way I could describe it would be:
     <br />
     > "the lovechild of typescript & rust"
 
