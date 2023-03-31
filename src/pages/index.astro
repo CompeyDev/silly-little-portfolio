@@ -39,12 +39,28 @@ let codeData = getCodeData(data);
 
 		const songs = [
 			{
-				name: "Game Start! - Xeon Diversity",
-				url: "/game_start.mp3",
+				name: "Xeon Diversity - Game Start!",
+				url: "/assets/music/game_start.mp3",
 			},
 			{
-				name: "Tamamushi - Rav",
-				url: "/tamamushi.mp3",
+				name: "Rav - Tamamushi",
+				url: "/assets/music/tamamushi.mp3",
+			},
+			{
+				name: "GroovyDominoes52 - Beemix",
+				url: "/assets/music/beemix.mp3",
+			},
+			{
+				name: "Toby Fox - Death By Glamour",
+				url: "/assets/music/death_by_glamour.mp3",
+			},
+			{
+				name: "Sonic Mania - Hi-Spec Robo Go!",
+				url: "/assets/music/hi-spec_robo_go.mp3",
+			},
+			{
+				name: "Earthbound - Buy Somethin' Will ya!",
+				url: "/assets/music/hi-spec_robo_go.mp3",
 			},
 		];
 
@@ -53,12 +69,15 @@ let codeData = getCodeData(data);
 
 		let audioSrc = null;
 		let audioAnalyzer = null;
-
+		
 		window.onload = () => {
 			const playButton = document.getElementById("PRESS_ME");
 			const musicNameElement = document.getElementById("current_music");
 			const musicNameDiv = document.getElementById("current_music_div");
-
+			const visualizerCanvas: any = document.getElementById("canvas");
+			visualizerCanvas.width = window.innerWidth;
+			visualizerCanvas.height = window.innerHeight;
+			
 			bgAudio.addEventListener("ended", () => {
 				console.log("audioController :: Song ended, moving to next");
 				playNo++;
@@ -73,6 +92,8 @@ let codeData = getCodeData(data);
 				} else {
 					console.log("audioController :: No new songs, ending queue!");
 					musicNameDiv.remove();
+					bgAudio.remove();
+					visualizerCanvas.remove();
 				}
 			});
 
@@ -80,10 +101,6 @@ let codeData = getCodeData(data);
 				playButton.remove();
 
 				mountCurrentlyPlaying(musicNameElement, musicNameDiv, songs[playNo].name);
-
-				const visualizerCanvas: any = document.getElementById("canvas");
-				visualizerCanvas.width = window.innerWidth;
-				visualizerCanvas.height = window.innerHeight;
 
 				const ctx = visualizerCanvas.getContext("2d");
 
@@ -130,8 +147,8 @@ let codeData = getCodeData(data);
 		<meta name="og:title" content="silly little portfolio" />
 		<meta name="description" content="just a tad bit of tomfoolery" />
 		<meta name="og:description" content="just a tad bit of tomfoolery" />
-		<!-- <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9f0f5" />
-		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#281c21" /> -->
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9f0f5" />
+		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#281c21" />
 	</astro:head>
 
 	<Layout leftAlign={false}>
@@ -146,7 +163,7 @@ let codeData = getCodeData(data);
 			<div id="current_music_div" style="text-align: right; visibility: hidden;">
 				<img
 					style="float: right; padding-right: 5px; align: right;"
-					src="/rsz_currently-playing-music-note-8-bit.gif"
+					src="/assets/icons/rsz_currently-playing-music-note-8-bit.gif"
 				/>
 				<p style="padding-top: 5px;" id="current_music"></p>
 			</div>

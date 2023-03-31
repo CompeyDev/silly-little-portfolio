@@ -5,11 +5,11 @@
 
 @font-face {
 	font-family: 'CaskaydiaCove Nerd Font Mono';
-	src: url('/CaskaydiaCoveNerdFontCompleteM-.eot');
-	src: url('/CaskaydiaCoveNerdFontCompleteM-.eot?#iefix') format('embedded-opentype'),
-		url('/CaskaydiaCoveNerdFontCompleteM-.woff2') format('woff2'),
-		url('/CaskaydiaCoveNerdFontCompleteM-.woff') format('woff'),
-		url('/CaskaydiaCoveNerdFontCompleteM-.ttf') format('truetype');
+	src: url('/assets/fonts/CaskaydiaCoveNerdFontCompleteM-.eot');
+	src: url('/assets/fonts/CaskaydiaCoveNerdFontCompleteM-.eot?#iefix') format('embedded-opentype'),
+		url('/assets/fonts/CaskaydiaCoveNerdFontCompleteM-.woff2') format('woff2'),
+		url('/assets/fonts/CaskaydiaCoveNerdFontCompleteM-.woff') format('woff'),
+		url('/assets/fonts/CaskaydiaCoveNerdFontCompleteM-.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
@@ -17,8 +17,8 @@
 
 
 @font-face {
-	font-family: '8 Bit Wonder';
-	src: url('/PixeloidMono-VGj6x.ttf') format('truetype');
+	font-family: 'Pixeloid Mono';
+	src: url('/assets/fonts/PixeloidMono-VGj6x.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
@@ -28,7 +28,7 @@
 html {
 	scrollbar-color: hsla(0, 0%, 100%, 0.289) transparent;
 	scrollbar-width: thin;
-	font-family: '8 Bit Wonder';
+	font-family: 'Pixeloid Mono';
 	color: #A7ADBA;
 	background-color: #1f1f1f;
 }
@@ -79,12 +79,12 @@ li {
 }
 
 .projects:before {
-	content: url('/rsz_heart-bullet-point-8-bit.png');
+	content: url('/assets/icons/rsz_heart-bullet-point-8-bit.png');
 	padding-right: 10px;
 }
 
 .link:before {
-	content: url('/rsz_social-bullet-point-8-bit.png');
+	content: url('/assets/icons/rsz_social-bullet-point-8-bit.png');
 	padding-right: 10px;
 }
 
