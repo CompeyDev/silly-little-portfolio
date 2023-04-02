@@ -1,7 +1,8 @@
-- [ ] Fix homepage navbar links
-- [ ] Fix time-toggle
-- [ ] Refactor code structure
-- [ ] Add transitions
-- [ ] Add client loaders
-- [ ] Fix faulty layouts
-- [ ] Add dynamic blog embeds
+- [x] Fix homepage navbar links
+- [x] Fix time-toggle
+- [x] Refactor code structure
+~~- Add transitions~~
+- ~~Add client loaders~~
+- [x] Fix faulty layouts
+- [x] Add dynamic blog embeds
+- [ ] Redirect /blog slugs to blog domain
