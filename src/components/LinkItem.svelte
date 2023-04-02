@@ -5,7 +5,7 @@
 </script>
 
 <li>
-	<a {href} target="_blank" rel="noreferrer noopener" class="dark:text-ocean-300 link underline"
+	<a {href} target="_blank" rel="noreferrer noopener me" class="dark:text-ocean-300 link underline"
 		>{name}</a
 	>
 	{#if description}
