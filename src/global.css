@@ -22,7 +22,7 @@
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
-	/* cursor: url(''); */
+	color: #cdd6f4;
 }
 
 html {
@@ -30,7 +30,7 @@ html {
 	scrollbar-width: thin;
 	font-family: 'Pixeloid Mono';
 	color: #A7ADBA;
-	background-color: #1f1f1f;
+	background-color: #1f1929;
 }
 
 .heading {

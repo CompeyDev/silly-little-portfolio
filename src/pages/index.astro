@@ -128,7 +128,7 @@ let codeData = getCodeData(data);
 					audioAnalyzer.getByteFrequencyData(dataArray);
 					for (let i = 0; i < bufferLength; i++) {
 						const barHeight = dataArray[i];
-						ctx.fillStyle = "purple";
+						ctx.fillStyle = "#cba6f7";
 						ctx.fillRect(x, visualizerCanvas.height - barHeight, barWidth, barHeight);
 						x += barWidth;
 					}
