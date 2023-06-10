@@ -46,6 +46,10 @@ let codeData = getCodeData(data);
 				name: "Rav - Tamamushi",
 				url: "/assets/music/tamamushi.mp3",
 			},
+      {
+        name: "Camellia - Underground Path",
+        url: "/assets/music/underground_path.mp3"
+      },
 			{
 				name: "GroovyDominoes52 - Beemix",
 				url: "/assets/music/beemix.mp3",
@@ -61,7 +65,7 @@ let codeData = getCodeData(data);
 			{
 				name: "Earthbound - Buy Somethin' Will ya!",
 				url: "/assets/music/buy_something_will_ya.mp3",
-			},
+			}
 		];
 
 		let bgAudio = new Audio();
@@ -69,7 +73,7 @@ let codeData = getCodeData(data);
 
 		let audioSrc = null;
 		let audioAnalyzer = null;
-		
+
 		window.onload = () => {
 			const playButton = document.getElementById("PRESS_ME");
 			const musicNameElement = document.getElementById("current_music");
@@ -77,7 +81,7 @@ let codeData = getCodeData(data);
 			const visualizerCanvas: any = document.getElementById("canvas");
 			visualizerCanvas.width = window.innerWidth;
 			visualizerCanvas.height = window.innerHeight;
-			
+
 			bgAudio.addEventListener("ended", () => {
 				console.log("audioController :: Song ended, moving to next");
 				playNo++;
