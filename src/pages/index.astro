@@ -10,29 +10,44 @@ import { getCodeData } from "../lib/rpcUtils";
 import type { LanyardData } from "sk-lanyard";
 
 const apiEndpoint = "https://api.lanyard.rest/v1/users/893762371770802227";
-const fetchedData = await fetch(apiEndpoint).then((response) => response.json());
+const fetchedData = await fetch(apiEndpoint).then((response) =>
+	response.json()
+);
 const data: LanyardData = fetchedData.data;
 let codeData = getCodeData(data);
 ---
 
 <html lang="en">
 	<meta charset="utf-8" />
-	<link rel="icon" type="image/x-icon" href="https://github.com/CompeyDev.png" />
+	<link
+		rel="icon"
+		type="image/x-icon"
+		href="https://github.com/CompeyDev.png"
+	/>
 
 	<script>
 		function genId(): string {
-			return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
-				var r = (Math.random() * 16) | 0,
-					v = c == "x" ? r : (r & 0x3) | 0x8;
-				return v.toString(16);
-			});
+			return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+				/[xy]/g,
+				function (c) {
+					var r = (Math.random() * 16) | 0,
+						v = c == "x" ? r : (r & 0x3) | 0x8;
+					return v.toString(16);
+				}
+			);
 		}
 
-		function mountCurrentlyPlaying(musicNameElement: HTMLElement, musicNameDiv: HTMLElement, name: string) {
+		function mountCurrentlyPlaying(
+			musicNameElement: HTMLElement,
+			musicNameDiv: HTMLElement,
+			name: string
+		) {
 			musicNameElement.textContent = name;
 			musicNameDiv.style.visibility = "visible";
 
-			console.log(`audioController/mountCurrentlyPlaying :: Mounted currently playing as ${name}`);
+			console.log(
+				`audioController/mountCurrentlyPlaying :: Mounted currently playing as ${name}`
+			);
 		}
 
 		let playNo = 0;
@@ -46,10 +61,10 @@ let codeData = getCodeData(data);
 				name: "Rav - Tamamushi",
 				url: "/assets/music/tamamushi.mp3",
 			},
-      {
-        name: "Camellia - Underground Path",
-        url: "/assets/music/underground_path.mp3"
-      },
+			{
+				name: "Camellia - Underground Path",
+				url: "/assets/music/underground_path.mp3",
+			},
 			{
 				name: "GroovyDominoes52 - Beemix",
 				url: "/assets/music/beemix.mp3",
@@ -65,7 +80,7 @@ let codeData = getCodeData(data);
 			{
 				name: "Earthbound - Buy Somethin' Will ya!",
 				url: "/assets/music/buy_something_will_ya.mp3",
-			}
+			},
 		];
 
 		let bgAudio = new Audio();
@@ -90,11 +105,17 @@ let codeData = getCodeData(data);
 					bgAudio.src = songs[playNo].url;
 
 					bgAudio.currentTime = 0;
-					mountCurrentlyPlaying(musicNameElement, musicNameDiv, songs[playNo].name);
+					mountCurrentlyPlaying(
+						musicNameElement,
+						musicNameDiv,
+						songs[playNo].name
+					);
 
 					bgAudio.play();
 				} else {
-					console.log("audioController :: No new songs, ending queue!");
+					console.log(
+						"audioController :: No new songs, ending queue!"
+					);
 					musicNameDiv.remove();
 					bgAudio.remove();
 					visualizerCanvas.remove();
@@ -104,7 +125,11 @@ let codeData = getCodeData(data);
 			playButton.onclick = () => {
 				playButton.remove();
 
-				mountCurrentlyPlaying(musicNameElement, musicNameDiv, songs[playNo].name);
+				mountCurrentlyPlaying(
+					musicNameElement,
+					musicNameDiv,
+					songs[playNo].name
+				);
 
 				const ctx = visualizerCanvas.getContext("2d");
 
@@ -128,12 +153,22 @@ let codeData = getCodeData(data);
 					console.log(`animatify :: Running render proc ${runId}`);
 
 					x = 0;
-					ctx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+					ctx.clearRect(
+						0,
+						0,
+						visualizerCanvas.width,
+						visualizerCanvas.height
+					);
 					audioAnalyzer.getByteFrequencyData(dataArray);
 					for (let i = 0; i < bufferLength; i++) {
 						const barHeight = dataArray[i];
 						ctx.fillStyle = "#cba6f7";
-						ctx.fillRect(x, visualizerCanvas.height - barHeight, barWidth, barHeight);
+						ctx.fillRect(
+							x,
+							visualizerCanvas.height - barHeight,
+							barWidth,
+							barHeight
+						);
 						x += barWidth;
 					}
 
@@ -145,9 +180,31 @@ let codeData = getCodeData(data);
 			};
 		};
 	</script>
+
+	<script>
+		const bob = document.getElementsByClassName("bob")[0]
+
+		document.body.onpointermove = e => {
+			const { clientX, clientY } = e;
+
+			bob.animate({
+				left: clientX + "px",
+				top: clientY + "px"
+			}, { duration: 2500, fill: "forwards" });
+		}
+
+		document.onclick = () => {
+			console.log('hi, im bob! :3')
+
+			bob.animate({
+				transform: "scale(1.5) scale(1)"
+			}, { duration: 50 });
+		}
+	</script>
+
 	<astro:head>
 		<title>silly little portfolio</title>
-<!-- 		<meta charset="utf-8" />
+		<!-- 		<meta charset="utf-8" />
 		<meta name="og:title" content="silly little portfolio" />
 		<meta name="description" content="just a tad bit of tomfoolery" />
 		<meta name="og:description" content="just a tad bit of tomfoolery" />
@@ -155,6 +212,7 @@ let codeData = getCodeData(data);
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#281c21" /> -->
 	</astro:head>
 
+	<span class="bob" />
 	<Layout leftAlign={false}>
 		<div id="container">
 			<canvas id="canvas"></canvas>
@@ -164,7 +222,10 @@ let codeData = getCodeData(data);
 			class="overflow-x-hidden overflow-y-hidden"
 			style="width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 999"
 		>
-			<div id="current_music_div" style="text-align: right; visibility: hidden;">
+			<div
+				id="current_music_div"
+				style="text-align: right; visibility: hidden;"
+			>
 				<img
 					style="float: right; padding-right: 5px; align: right;"
 					src="/assets/icons/rsz_currently-playing-music-note-8-bit.gif"
@@ -183,8 +244,12 @@ let codeData = getCodeData(data);
 							<Language lang={codeData?.lang} />
 						</h1>
 						<br />
-						<h1 class="text-ocean-900 dark:text-ocean-100 heading">projects</h1>
-						<ul class="list-disc list-inside text-ocean-700 dark:text-ocean-blue">
+						<h1 class="text-ocean-900 dark:text-ocean-100 heading">
+							projects
+						</h1>
+						<ul
+							class="list-disc list-inside text-ocean-700 dark:text-ocean-blue"
+						>
 							<ProjectItem
 								href="https://datalink.dev"
 								name="datalink"
@@ -253,13 +318,32 @@ let codeData = getCodeData(data);
 						</ul>
 					</div>
 					<div>
-						<h1 class="text-ocean-900 dark:text-ocean-100 heading">links</h1>
-						<ul class="list-disc list-inside text-ocean-700 dark:text-ocean-blue">
-							<LinkItem href="https://blog.devcomp.xyz" name="blog" />
-							<LinkItem href="https://twitter.com/DevComp_" name="twitter" />
-							<LinkItem href="https://mas.to/@DevComp" name="mastodon" />
-							<LinkItem href="https://github.com/CompeyDev" name="github" />
-							<LinkItem href="mailto:hi@devcomp.xyz" name="email" />
+						<h1 class="text-ocean-900 dark:text-ocean-100 heading">
+							links
+						</h1>
+						<ul
+							class="list-disc list-inside text-ocean-700 dark:text-ocean-blue"
+						>
+							<LinkItem
+								href="https://blog.devcomp.xyz"
+								name="blog"
+							/>
+							<LinkItem
+								href="https://twitter.com/DevComp_"
+								name="twitter"
+							/>
+							<LinkItem
+								href="https://mas.to/@DevComp"
+								name="mastodon"
+							/>
+							<LinkItem
+								href="https://github.com/CompeyDev"
+								name="github"
+							/>
+							<LinkItem
+								href="mailto:hi@devcomp.xyz"
+								name="email"
+							/>
 						</ul>
 					</div>
 					<button
@@ -273,4 +357,5 @@ let codeData = getCodeData(data);
 			</section>
 		</div>
 	</Layout>
+
 </html>

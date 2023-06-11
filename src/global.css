@@ -22,7 +22,6 @@
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
-	color: #cdd6f4;
 }
 
 html {
@@ -98,7 +97,8 @@ li {
 		opacity: 0;
 	}
 
-	40%, 100% {
+	40%,
+	100% {
 		opacity: 1;
 	}
 }
@@ -108,7 +108,19 @@ li {
 		opacity: 0;
 	}
 
-	40%, 100% {
+	40%,
+	100% {
 		opacity: 1;
 	}
+}
+
+.bob {
+	height: 20px;
+	aspect-ratio: 1;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	translate: -50% -50%;
+	border-radius: 30%;
+	outline: 2px solid white;
 }
