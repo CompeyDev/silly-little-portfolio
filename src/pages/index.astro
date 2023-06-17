@@ -182,7 +182,11 @@ let codeData = getCodeData(data);
 	</script>
 
 	<script>
-		const bob = document.getElementsByClassName("bob")[0]
+		const bob = document.getElementsByClassName("bob")[0];
+
+		if (navigator.userAgentData.mobile) {
+			bob.remove();
+		}
 
 		document.body.onpointermove = e => {
 			const { clientX, clientY } = e;
