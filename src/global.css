@@ -32,6 +32,10 @@ html {
 	background-color: #1f1929;
 }
 
+body, p {
+	color: #cdd6f4
+}
+
 .heading {
 	color: white
 }
@@ -53,6 +57,10 @@ html {
 ::-webkit-scrollbar-button,
 ::-webkit-scrollbar-corner {
 	display: none;
+}
+
+::selection {
+	background: #89b4fa;
 }
 
 a:hover {
