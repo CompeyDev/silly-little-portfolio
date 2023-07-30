@@ -1,3 +1,4 @@
+<!--
 <script lang="ts">
     import { atom } from "nanostores";
     import { onMount } from "svelte";
@@ -55,3 +56,4 @@
     {/if}
     
 </div>
+-->
